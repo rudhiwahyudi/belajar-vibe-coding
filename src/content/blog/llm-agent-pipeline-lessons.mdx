@@ -1,0 +1,36 @@
+---
+title: "Lessons from Building an LLM Agent Pipeline for Content Drafting"
+excerpt: "What I learned building a multi-agent research-to-draft pipeline — including where structured output saved us and where agents still need a human in the loop."
+coverImage: "/images/blog/llm-agent-pipeline/cover.jpg"
+publishedAt: "2025-08-20"
+tags: ["AI Automation", "LLM", "Engineering"]
+category: "AI Automation"
+---
+
+Earlier this year I built [AI Content Pipeline](/projects/ai-content-pipeline), a system that takes a content brief and produces a research-backed first draft automatically. Here are the lessons that most changed how I think about building with LLM agents.
+
+## 1. Structured output beats clever prompting
+
+Early versions asked the model to "research the topic and return a JSON outline." The results were inconsistent — sometimes valid JSON, sometimes JSON wrapped in markdown fences, sometimes prose with a JSON-*ish* blob at the end.
+
+Switching to the API's structured output / JSON schema mode eliminated an entire category of parsing bugs overnight. If your pipeline depends on the *shape* of a response, don't ask nicely — constrain it.
+
+## 2. Verification steps are not optional
+
+The biggest risk in an automated research pipeline is confidently wrong output — claims that sound plausible but aren't backed by the retrieved sources. We added a dedicated **verification agent** whose only job is to check each claim in the draft against the source material it was generated from, and flag (not silently remove) anything it can't verify.
+
+This step roughly doubled pipeline latency but was the single highest-impact change for output quality.
+
+## 3. Parallelism needs careful retry design
+
+Drafting sections in parallel cut wall-clock time significantly, but it introduced a new failure mode: partial failures. If section 3 of 7 fails, do you retry just that section, retry everything, or fail the whole job?
+
+We settled on **per-section retries with a capped backoff**, and the job only fails entirely if a section exhausts its retries — partial results are still useful to a human reviewer.
+
+## 4. Humans still review everything — and that's fine
+
+The pipeline doesn't publish anything automatically. Every draft goes to a review queue. The goal was never "zero human involvement" — it was **cutting the time to a reviewable first draft from ~3 hours to under 10 minutes**, so reviewers spend their time editing instead of starting from a blank page.
+
+## What's next
+
+I'm currently exploring whether the same verification-agent pattern can be applied to code review — having an agent check a diff against the linked ticket's acceptance criteria before a human reviewer looks at it. If that's something you're working on too, I'd love to compare notes — [get in touch](/contact).
