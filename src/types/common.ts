@@ -1,5 +1,5 @@
 export type FocusArea =
-  | 'Software Engineering'
+  | 'System Analyst'
   | 'DevOps'
   | 'Cloud Computing'
   | 'AI Automation'

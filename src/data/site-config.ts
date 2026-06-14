@@ -3,7 +3,7 @@ import type { SiteConfig, SkillCategory } from '@/types/site'
 export const siteConfig: SiteConfig = {
   name: 'Rudhi Wahyudi',
   initials: 'RW',
-  role: 'Software & DevOps Engineer',
+  role: 'System Analyst',
   tagline: 'Building reliable systems, automating the boring parts, and shipping with confidence.',
   shortBio:
     'Software & DevOps engineer focused on cloud infrastructure and AI-driven automation — currently preparing for the MEXT scholarship to deepen research in distributed systems.',
@@ -20,8 +20,8 @@ When I'm not writing code, I'm usually documenting what I learned — you'll fin
     x: 'https://x.com/rudhiwahyudi',
   },
   resumeUrl: '/resume-rudhi-wahyudi.pdf',
-  availability: 'mext-applicant',
-  focusAreas: ['Software Engineering', 'DevOps', 'Cloud Computing', 'AI Automation'],
+  availability: 'open-to-collab',
+  focusAreas: ['System Analyst', 'DevOps', 'Cloud Computing', 'AI Automation'],
 }
 
 export const skillCategories: SkillCategory[] = [
@@ -52,16 +52,17 @@ export const skillCategories: SkillCategory[] = [
 ]
 
 export const techMarquee: string[] = [
-  'React',
-  'TypeScript',
-  'Node.js',
-  'Docker',
-  'Kubernetes',
-  'AWS',
-  'Google Cloud',
-  'Terraform',
-  'Python',
+  'System Analysis',
+  'Business Analysis',
+  'Requirements Gathering',
+  'UML',
+  'BPMN',
+  'Use Case Design',
+  'SQL',
   'PostgreSQL',
-  'GitHub Actions',
-  'OpenAI API',
+  'API Integration',
+  'Agile Scrum',
+  'Technical Documentation',
+  'Stakeholder Management',
+  'SDLC'
 ]
