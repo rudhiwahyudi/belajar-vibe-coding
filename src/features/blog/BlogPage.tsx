@@ -22,8 +22,8 @@ export default function BlogPage() {
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
       <SectionHeading
         eyebrow="Blog"
-        title="Notes on engineering & the MEXT journey"
-        description="Write-ups on software engineering, DevOps, cloud infrastructure, AI automation, and my preparation for the MEXT scholarship."
+        title="Notes on analysis & technology"
+        description="Write-ups on business process analysis, system analysis, data analytics, and lessons from research and teaching."
       />
 
       <div className="flex flex-wrap gap-2">

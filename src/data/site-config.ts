@@ -4,14 +4,14 @@ export const siteConfig: SiteConfig = {
   name: 'Rudhi Wahyudi',
   initials: 'RW',
   role: 'System Analyst',
-  tagline: 'Building reliable systems, automating the boring parts, and shipping with confidence.',
+  tagline: 'Business Process Analyst & Technology Problem Solver — turning business needs into practical system solutions.',
   shortBio:
-    'Software & DevOps engineer focused on cloud infrastructure and AI-driven automation — currently preparing for the MEXT scholarship to deepen research in distributed systems.',
-  bio: `I'm a software and DevOps engineer who enjoys the full lifecycle of building products — from designing APIs and frontends to wiring up the cloud infrastructure and CI/CD pipelines that keep them running.
+    'System Analyst at Astra Credit Companies, focused on business process analysis, requirements gathering, and system integration — also an Assistant Lecturer in Big Data & Data Analytics.',
+  bio: `I'm a System Analyst at Astra Credit Companies, where I work at the intersection of business operations and technology — analyzing processes, gathering requirements, and coordinating with stakeholders and development teams to design system improvements that fit how the business actually works.
 
-Over the past few years I've worked across web application development, container orchestration, and cloud automation, with a growing focus on using AI to remove repetitive engineering work. I'm currently preparing an application for the MEXT scholarship to pursue graduate research in software systems in Japan.
+I hold a degree in Informatics and also serve as an Assistant Lecturer for Big Data and Data Analytics courses, helping students build practical skills in SQL and data analysis. As a former PKM (Program Kreativitas Mahasiswa) Project Leader and co-author of two research publications, I bring a structured, research-driven approach to problem solving.
 
-When I'm not writing code, I'm usually documenting what I learned — you'll find notes on cloud architecture, DevOps practices, and my scholarship journey on the blog.`,
+Whether it's mapping a business process, writing a requirements document, or untangling a system integration issue, I focus on practical solutions that work for both the business and the people using the system.`,
   location: 'Indonesia',
   email: 'rinnecentio@gmail.com',
   social: {
@@ -21,48 +21,47 @@ When I'm not writing code, I'm usually documenting what I learned — you'll fin
   },
   resumeUrl: '/resume-rudhi-wahyudi.pdf',
   availability: 'open-to-collab',
-  focusAreas: ['System Analyst', 'DevOps', 'Cloud Computing', 'AI Automation'],
+  focusAreas: ['System Analysis', 'Business Process Analysis', 'Technology Solutions', 'Data & Research'],
 }
 
 export const skillCategories: SkillCategory[] = [
   {
-    category: 'Languages',
-    items: ['TypeScript', 'JavaScript', 'Python', 'Go', 'Java', 'SQL'],
+    category: 'Business Analysis',
+    items: [
+      'Requirements Gathering',
+      'Process Mapping (BPMN)',
+      'Use Case & UML',
+      'Gap Analysis',
+      'Stakeholder Management',
+      'SDLC',
+    ],
   },
   {
-    category: 'Frontend',
-    items: ['React', 'Next.js', 'Tailwind CSS', 'Vite', 'Redux'],
+    category: 'Systems & Data',
+    items: ['SQL', 'System Integration', 'Database Design', 'Data Analysis', 'Big Data Fundamentals'],
   },
   {
-    category: 'Backend',
-    items: ['Node.js', 'Express', 'NestJS', 'Spring Boot', 'REST', 'GraphQL'],
+    category: 'Project & Coordination',
+    items: ['Project Coordination', 'Agile / Scrum', 'Technical Documentation', 'Cross-functional Communication'],
   },
   {
-    category: 'Cloud & DevOps',
-    items: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Nginx'],
-  },
-  {
-    category: 'Data & AI',
-    items: ['PostgreSQL', 'Redis', 'OpenAI API', 'LangChain', 'Vector Databases'],
-  },
-  {
-    category: 'Tools',
-    items: ['Git', 'Linux', 'Grafana', 'Prometheus', 'Figma'],
+    category: 'Research & Teaching',
+    items: ['Academic Research', 'Curriculum Development', 'Mentoring', 'Data-driven Reporting'],
   },
 ]
 
 export const techMarquee: string[] = [
   'System Analysis',
-  'Business Analysis',
+  'Business Process Analysis',
   'Requirements Gathering',
   'UML',
   'BPMN',
   'Use Case Design',
   'SQL',
-  'PostgreSQL',
-  'API Integration',
+  'System Integration',
+  'Data Analysis',
   'Agile Scrum',
   'Technical Documentation',
   'Stakeholder Management',
-  'SDLC'
+  'SDLC',
 ]

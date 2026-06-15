@@ -10,7 +10,7 @@ export default function ContactPage() {
       <SectionHeading
         eyebrow="Contact"
         title="Let's build something together"
-        description="Whether it's a role, a project, a collaboration, or a question about my MEXT scholarship journey — I'd love to hear from you."
+        description="Whether it's a role, a project, a collaboration, or just a question about business process and system analysis — I'd love to hear from you."
       />
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_360px]">

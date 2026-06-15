@@ -17,7 +17,7 @@ export function FeaturedProjects() {
           <SectionHeading
             eyebrow="Selected work"
             title="Featured projects"
-            description="A mix of full-stack products, DevOps tooling, and AI-powered automation."
+            description="A mix of business process analysis, system analysis, and data-driven initiatives."
           />
           <Button variant="outline" render={<Link to="/projects" />}>
             View all projects

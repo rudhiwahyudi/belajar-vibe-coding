@@ -1,8 +1,8 @@
 export type FocusArea =
-  | 'System Analyst'
-  | 'DevOps'
-  | 'Cloud Computing'
-  | 'AI Automation'
+  | 'System Analysis'
+  | 'Business Process Analysis'
+  | 'Technology Solutions'
+  | 'Data & Research'
 
 export interface DateRange {
   start: string // ISO date, e.g. "2023-01"

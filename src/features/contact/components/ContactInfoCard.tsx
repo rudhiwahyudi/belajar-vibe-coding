@@ -1,4 +1,4 @@
-import { MapPin, Mail, GraduationCap } from 'lucide-react'
+import { MapPin, Mail, Briefcase } from 'lucide-react'
 import { siteConfig } from '@/data/site-config'
 import { StatusPill } from '@/components/shared/StatusPill'
 import { SocialLinks } from '@/features/contact/components/SocialLinks'
@@ -24,8 +24,8 @@ export function ContactInfoCard() {
           {siteConfig.location}
         </div>
         <div className="flex items-center gap-3 text-muted-foreground">
-          <GraduationCap className="size-4" />
-          Preparing for MEXT Scholarship
+          <Briefcase className="size-4" />
+          System Analyst at Astra Credit Companies
         </div>
       </div>
 

@@ -16,7 +16,7 @@ export interface SiteConfig {
     instagram?: string
   }
   resumeUrl: string
-  availability: 'open-to-work' | 'open-to-collab' | 'mext-applicant'
+  availability: 'open-to-work' | 'open-to-collab'
   focusAreas: FocusArea[]
 }
 

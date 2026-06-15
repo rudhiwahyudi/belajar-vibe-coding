@@ -20,8 +20,8 @@ export default function ProjectsPage() {
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
       <SectionHeading
         eyebrow="Projects"
-        title="Things I've built"
-        description="A selection of software, infrastructure, and AI automation projects — from production systems to side projects I used to learn something new."
+        title="Things I've worked on"
+        description="A selection of business process analysis, system analysis, and research-driven work — from my current role to academic projects."
       />
 
       <ProjectFilterBar focusAreas={focusAreas} active={activeFilter} onChange={setActiveFilter} />

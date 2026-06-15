@@ -1,4 +1,4 @@
-import { Bot, Cloud, Code2, Workflow } from 'lucide-react'
+import { ClipboardList, Workflow, Puzzle, BarChart3 } from 'lucide-react'
 import type { FocusArea } from '@/types/common'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
@@ -6,34 +6,34 @@ import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 
 interface FocusAreaCard {
   area: FocusArea
-  icon: typeof Code2
+  icon: typeof ClipboardList
   description: string
 }
 
 const FOCUS_AREAS: FocusAreaCard[] = [
   {
-    area: 'Software Engineering',
-    icon: Code2,
+    area: 'System Analysis',
+    icon: ClipboardList,
     description:
-      'Designing and shipping full-stack products — from APIs and data models to polished, accessible frontends.',
+      'Gathering requirements, mapping workflows, and translating business needs into clear specifications for development teams.',
   },
   {
-    area: 'DevOps',
+    area: 'Business Process Analysis',
     icon: Workflow,
     description:
-      'Building CI/CD pipelines, container workflows, and GitOps practices that make shipping safe and routine.',
+      'Analyzing and improving business processes through BPMN mapping, gap analysis, and close stakeholder collaboration.',
   },
   {
-    area: 'Cloud Computing',
-    icon: Cloud,
+    area: 'Technology Solutions',
+    icon: Puzzle,
     description:
-      'Architecting scalable, cost-aware infrastructure on AWS and Google Cloud with infrastructure as code.',
+      'Solving operational and system integration challenges with practical, well-documented technical solutions.',
   },
   {
-    area: 'AI Automation',
-    icon: Bot,
+    area: 'Data & Research',
+    icon: BarChart3,
     description:
-      'Applying LLMs and automation pipelines to remove repetitive engineering work and unlock new workflows.',
+      'Using SQL and data analysis to support decisions, teaching, and academic research.',
   },
 ]
 
@@ -44,7 +44,7 @@ export function FocusAreasGrid() {
         <SectionHeading
           eyebrow="What I do"
           title="Focus areas"
-          description="A blend of engineering disciplines that shape how I build, ship, and operate software."
+          description="A blend of analytical and technical disciplines that shape how I bridge business needs and technology."
         />
 
         <StaggerGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

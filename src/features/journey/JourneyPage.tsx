@@ -27,7 +27,7 @@ export default function JourneyPage() {
       <SectionHeading
         eyebrow="Journey"
         title="Where I've been, and where I'm headed"
-        description="A timeline of my work experience, education, and the milestones along the way to the MEXT scholarship."
+        description="A timeline of my work experience, education, and the milestones along the way."
       />
 
       <div className="flex flex-wrap gap-2">

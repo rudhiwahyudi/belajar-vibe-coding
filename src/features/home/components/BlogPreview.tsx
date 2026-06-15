@@ -19,7 +19,7 @@ export function BlogPreview() {
           <SectionHeading
             eyebrow="Writing"
             title="From the blog"
-            description="Notes on engineering, DevOps practices, and my preparation for the MEXT scholarship."
+            description="Notes on business process analysis, system analysis, and data analytics."
           />
           <Button variant="outline" render={<Link to="/blog" />}>
             Read the blog

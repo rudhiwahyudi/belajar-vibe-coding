@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react'
 import type { FocusArea } from './common'
 
-export type BlogCategory = FocusArea | 'Career' | 'Scholarship'
+export type BlogCategory = FocusArea | 'Career'
 
 export interface BlogPostMeta {
   slug: string
