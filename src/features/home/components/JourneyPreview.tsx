@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageContainer } from '@/components/layout/PageContainer'
@@ -5,9 +6,14 @@ import { SectionHeading } from '@/components/shared/SectionHeading'
 import { Button } from '@/components/ui/button'
 import { TimelineItem } from '@/features/journey/components/TimelineItem'
 import { getJourneySorted } from '@/data/journey'
+import type { JourneyItem } from '@/types/journey'
 
 export function JourneyPreview() {
-  const items = getJourneySorted().slice(0, 3)
+  const [items, setItems] = useState<JourneyItem[]>([])
+
+  useEffect(() => {
+    getJourneySorted().then((all) => setItems(all.slice(0, 3)))
+  }, [])
 
   return (
     <section className="py-16 md:py-24">

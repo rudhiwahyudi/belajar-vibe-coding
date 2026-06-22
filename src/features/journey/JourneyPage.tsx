@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import { TimelineItem } from '@/features/journey/components/TimelineItem'
@@ -15,7 +15,11 @@ const FILTERS: { label: string; value: JourneyItem['type'] | 'All' }[] = [
 
 export default function JourneyPage() {
   const [filter, setFilter] = useState<JourneyItem['type'] | 'All'>('All')
-  const items = useMemo(() => getJourneySorted(), [])
+  const [items, setItems] = useState<JourneyItem[]>([])
+
+  useEffect(() => {
+    getJourneySorted().then(setItems)
+  }, [])
 
   const filteredItems = useMemo(() => {
     if (filter === 'All') return items

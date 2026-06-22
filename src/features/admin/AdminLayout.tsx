@@ -38,6 +38,8 @@ export default function AdminLayout() {
           <nav className="flex gap-4">
             <NavLink to="/admin/blog" className={navClass}>Blog</NavLink>
             <NavLink to="/admin/projects" className={navClass}>Projects</NavLink>
+            <NavLink to="/admin/journey" className={navClass}>Journey</NavLink>
+            <NavLink to="/admin/certificates" className={navClass}>Certificates</NavLink>
           </nav>
 
           <div className="ml-auto flex items-center gap-3">
