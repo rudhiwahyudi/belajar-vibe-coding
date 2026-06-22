@@ -8,6 +8,7 @@ const ProjectsPage = lazy(() => import('@/features/projects/ProjectsPage'))
 const ProjectDetailPage = lazy(() => import('@/features/projects/ProjectDetailPage'))
 const JourneyPage = lazy(() => import('@/features/journey/JourneyPage'))
 const CertificatesPage = lazy(() => import('@/features/certificates/CertificatesPage'))
+const ResumePage = lazy(() => import('@/features/resume/ResumePage'))
 const BlogPage = lazy(() => import('@/features/blog/BlogPage'))
 const BlogDetailPage = lazy(() => import('@/features/blog/BlogDetailPage'))
 const ContactPage = lazy(() => import('@/features/contact/ContactPage'))
@@ -24,6 +25,7 @@ const AdminJourneyPage = lazy(() => import('@/features/admin/journey/AdminJourne
 const AdminJourneyForm = lazy(() => import('@/features/admin/journey/AdminJourneyForm'))
 const AdminCertificatesPage = lazy(() => import('@/features/admin/certificates/AdminCertificatesPage'))
 const AdminCertificatesForm = lazy(() => import('@/features/admin/certificates/AdminCertificatesForm'))
+const AdminResumePage = lazy(() => import('@/features/admin/resume/AdminResumePage'))
 
 export const router = createBrowserRouter([
   // ── Admin (no public layout, must come before the '/' layout route) ──────
@@ -45,6 +47,7 @@ export const router = createBrowserRouter([
       { path: 'certificates', Component: AdminCertificatesPage },
       { path: 'certificates/new', Component: AdminCertificatesForm },
       { path: 'certificates/:id/edit', Component: AdminCertificatesForm },
+      { path: 'resume', Component: AdminResumePage },
     ],
   },
 
@@ -58,6 +61,7 @@ export const router = createBrowserRouter([
       { path: 'projects/:slug', Component: ProjectDetailPage },
       { path: 'journey', Component: JourneyPage },
       { path: 'certificates', Component: CertificatesPage },
+      { path: 'resume', Component: ResumePage },
       { path: 'blog', Component: BlogPage },
       { path: 'blog/:slug', Component: BlogDetailPage },
       { path: 'contact', Component: ContactPage },
