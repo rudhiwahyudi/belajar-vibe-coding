@@ -1,4 +1,3 @@
-import type { ComponentType } from 'react'
 import type { FocusArea } from './common'
 
 export type BlogCategory = FocusArea | 'Career'
@@ -22,6 +21,6 @@ export interface TocHeading {
 }
 
 export interface BlogPost extends BlogPostMeta {
-  Content: ComponentType
+  content: string // plain Markdown
   headings: TocHeading[]
 }

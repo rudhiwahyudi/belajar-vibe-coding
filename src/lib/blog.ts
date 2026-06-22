@@ -1,87 +1,98 @@
-import readingTime from 'reading-time/lib/reading-time'
 import GithubSlugger from 'github-slugger'
-import type { BlogPost, BlogPostMeta, TocHeading } from '@/types/blog'
-
-interface MdxModule {
-  default: BlogPost['Content']
-  frontmatter: Omit<BlogPostMeta, 'readingTime' | 'slug'>
-}
-
-const modules = import.meta.glob<MdxModule>('/src/content/blog/*.mdx', {
-  eager: true,
-})
-
-const rawModules = import.meta.glob<string>('/src/content/blog/*.mdx', {
-  eager: true,
-  query: '?raw',
-  import: 'default',
-})
-
-function slugFromPath(path: string): string {
-  const filename = path.split('/').pop() ?? path
-  return filename.replace(/\.mdx$/, '')
-}
+import { supabase } from '@/lib/supabase'
+import type { BlogPost, TocHeading } from '@/types/blog'
 
 function extractHeadings(body: string): TocHeading[] {
   const slugger = new GithubSlugger()
   const headings: TocHeading[] = []
-
   for (const line of body.split('\n')) {
     const match = /^(#{2,3})\s+(.*)$/.exec(line.trim())
     if (!match) continue
-
     const text = match[2].trim()
-    headings.push({
-      id: slugger.slug(text),
-      text,
-      depth: match[1].length,
-    })
+    headings.push({ id: slugger.slug(text), text, depth: match[1].length })
   }
-
   return headings
 }
 
-function buildPosts(): BlogPost[] {
-  return Object.entries(modules)
-    .map(([path, mod]) => {
-      const slug = slugFromPath(path)
-      const raw = rawModules[path] ?? ''
-      const body = raw.replace(/^---[\s\S]*?---/, '')
-      const stats = readingTime(body)
+const SELECT_COLS =
+  'slug,title,excerpt,content,cover_image,published_at,updated_at,reading_time,tags,category'
 
-      return {
-        slug,
-        ...mod.frontmatter,
-        readingTime: Math.max(1, Math.round(stats.minutes)),
-        Content: mod.default,
-        headings: extractHeadings(body),
-      }
-    })
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+type DbPost = {
+  slug: string
+  title: string
+  excerpt: string
+  content: string
+  cover_image: string
+  published_at: string | null
+  updated_at: string | null
+  reading_time: number
+  tags: string[]
+  category: string
 }
 
-const posts = buildPosts()
-
-export function getAllPosts(): BlogPost[] {
-  return posts
+function mapPost(row: DbPost): BlogPost {
+  return {
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    content: row.content,
+    coverImage: row.cover_image,
+    publishedAt: row.published_at ?? '',
+    updatedAt: row.updated_at ?? undefined,
+    readingTime: row.reading_time,
+    tags: row.tags,
+    category: row.category as BlogPost['category'],
+    headings: extractHeadings(row.content),
+  }
 }
 
-export function getPostBySlug(slug: string): BlogPost | undefined {
-  return posts.find((post) => post.slug === slug)
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select(SELECT_COLS)
+    .eq('status', 'published')
+    .order('published_at', { ascending: false })
+  if (error) throw error
+  return (data ?? []).map(mapPost)
 }
 
-export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
-  const current = getPostBySlug(slug)
+export async function getPostBySlug(slug: string): Promise<BlogPost | undefined> {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select(SELECT_COLS)
+    .eq('status', 'published')
+    .eq('slug', slug)
+    .single()
+  if (error) return undefined
+  return mapPost(data)
+}
+
+export async function getRelatedPosts(slug: string, limit = 3): Promise<BlogPost[]> {
+  const current = await getPostBySlug(slug)
   if (!current) return []
 
-  return posts
-    .filter((post) => post.slug !== slug)
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select(SELECT_COLS)
+    .eq('status', 'published')
+    .neq('slug', slug)
+    .order('published_at', { ascending: false })
+    .limit(20)
+  if (error) return []
+
+  return (data ?? [])
+    .map(mapPost)
     .filter((post) => post.tags.some((tag) => current.tags.includes(tag)))
     .slice(0, limit)
 }
 
-export function getAllTags(): string[] {
+export async function getAllTags(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('tags')
+    .eq('status', 'published')
+  if (error) return []
   const tags = new Set<string>()
-  posts.forEach((post) => post.tags.forEach((tag) => tags.add(tag)))
+  ;(data ?? []).forEach((row) => (row.tags as string[]).forEach((t) => tags.add(t)))
   return Array.from(tags)
 }

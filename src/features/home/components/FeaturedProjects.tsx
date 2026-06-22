@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageContainer } from '@/components/layout/PageContainer'
@@ -6,9 +7,14 @@ import { Button } from '@/components/ui/button'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { ProjectCard } from '@/features/projects/components/ProjectCard'
 import { getFeaturedProjects } from '@/data/projects'
+import type { Project } from '@/types/project'
 
 export function FeaturedProjects() {
-  const projects = getFeaturedProjects()
+  const [projects, setProjects] = useState<Project[]>([])
+
+  useEffect(() => {
+    getFeaturedProjects().then(setProjects)
+  }, [])
 
   return (
     <section className="py-16 md:py-24">

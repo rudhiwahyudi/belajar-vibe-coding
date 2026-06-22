@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeSlug from 'rehype-slug'
 import { cn } from '@/lib/utils'
 
 interface ProseProps {
@@ -20,7 +21,9 @@ export function Prose({ content, className }: ProseProps) {
         className,
       )}
     >
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]}>
+        {content}
+      </ReactMarkdown>
     </div>
   )
 }

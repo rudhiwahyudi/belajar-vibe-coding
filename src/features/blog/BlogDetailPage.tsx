@@ -1,12 +1,15 @@
+import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { FadeIn } from '@/components/motion/FadeIn'
 import { Separator } from '@/components/ui/separator'
 import { TechBadge } from '@/components/shared/TechBadge'
+import { Prose } from '@/components/shared/Prose'
 import { TableOfContents } from '@/features/blog/components/TableOfContents'
 import { ShareButtons } from '@/features/blog/components/ShareButtons'
 import { RelatedPosts } from '@/features/blog/components/RelatedPosts'
 import { getPostBySlug, getRelatedPosts } from '@/lib/blog'
+import type { BlogPost } from '@/types/blog'
 
 function formatDate(value: string): string {
   return new Date(value).toLocaleDateString('en-US', {
@@ -18,15 +21,21 @@ function formatDate(value: string): string {
 
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>()
-  const post = slug ? getPostBySlug(slug) : undefined
+  const [post, setPost] = useState<BlogPost | null | undefined>(undefined)
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([])
 
-  if (!post) {
-    return <Navigate to="/blog" replace />
-  }
+  useEffect(() => {
+    if (!slug) { setPost(null); return }
+    getPostBySlug(slug).then((p) => {
+      setPost(p ?? null)
+      if (p) getRelatedPosts(p.slug).then(setRelatedPosts)
+    })
+  }, [slug])
 
-  const relatedPosts = getRelatedPosts(post.slug)
+  if (post === undefined) return null
+  if (!post) return <Navigate to="/blog" replace />
+
   const url = typeof window !== 'undefined' ? window.location.href : ''
-  const { Content } = post
 
   return (
     <PageContainer className="flex flex-col gap-12 py-16 md:py-24">
@@ -52,16 +61,8 @@ export default function BlogDetailPage() {
       </FadeIn>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_260px]">
-        <FadeIn
-          className={[
-            'prose prose-zinc dark:prose-invert max-w-none',
-            'prose-headings:font-semibold prose-headings:tracking-tight prose-headings:scroll-mt-24',
-            'prose-a:text-primary prose-a:no-underline hover:prose-a:underline',
-            'prose-code:rounded prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:before:content-none prose-code:after:content-none',
-            'prose-pre:rounded-xl prose-pre:border prose-pre:border-border prose-pre:bg-secondary',
-          ].join(' ')}
-        >
-          <Content />
+        <FadeIn>
+          <Prose content={post.content} className="prose-headings:scroll-mt-24" />
         </FadeIn>
 
         <aside className="flex flex-col gap-6 lg:sticky lg:top-24 lg:self-start">

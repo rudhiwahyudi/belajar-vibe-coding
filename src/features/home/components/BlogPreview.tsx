@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { PageContainer } from '@/components/layout/PageContainer'
@@ -6,9 +7,14 @@ import { Button } from '@/components/ui/button'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { BlogCard } from '@/features/blog/components/BlogCard'
 import { getAllPosts } from '@/lib/blog'
+import type { BlogPost } from '@/types/blog'
 
 export function BlogPreview() {
-  const posts = getAllPosts().slice(0, 3)
+  const [posts, setPosts] = useState<BlogPost[]>([])
+
+  useEffect(() => {
+    getAllPosts().then((all) => setPosts(all.slice(0, 3)))
+  }, [])
 
   if (posts.length === 0) return null
 

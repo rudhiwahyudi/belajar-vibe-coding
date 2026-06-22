@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { FadeIn } from '@/components/motion/FadeIn'
@@ -7,6 +8,7 @@ import { ProjectGallery } from '@/features/projects/components/ProjectGallery'
 import { ProjectMeta } from '@/features/projects/components/ProjectMeta'
 import { RelatedProjects } from '@/features/projects/components/RelatedProjects'
 import { getProjectBySlug, getRelatedProjects } from '@/data/projects'
+import type { Project } from '@/types/project'
 
 const STATUS_TONE = {
   completed: 'success',
@@ -16,13 +18,19 @@ const STATUS_TONE = {
 
 export default function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>()
-  const project = slug ? getProjectBySlug(slug) : undefined
+  const [project, setProject] = useState<Project | null | undefined>(undefined)
+  const [relatedProjects, setRelatedProjects] = useState<Project[]>([])
 
-  if (!project) {
-    return <Navigate to="/projects" replace />
-  }
+  useEffect(() => {
+    if (!slug) { setProject(null); return }
+    getProjectBySlug(slug).then((p) => {
+      setProject(p ?? null)
+      if (p) getRelatedProjects(p.slug).then(setRelatedProjects)
+    })
+  }, [slug])
 
-  const relatedProjects = getRelatedProjects(project.slug)
+  if (project === undefined) return null
+  if (!project) return <Navigate to="/projects" replace />
 
   return (
     <PageContainer className="flex flex-col gap-12 py-16 md:py-24">

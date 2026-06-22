@@ -1,20 +1,27 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { ProjectCard } from '@/features/projects/components/ProjectCard'
 import { ProjectFilterBar } from '@/features/projects/components/ProjectFilterBar'
-import { projects, getAllFocusAreas } from '@/data/projects'
+import { getAllProjects, getAllFocusAreas } from '@/data/projects'
+import type { Project } from '@/types/project'
 import type { FocusArea } from '@/types/common'
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<FocusArea | 'All'>('All')
-  const focusAreas = useMemo(() => getAllFocusAreas() as FocusArea[], [])
+  const [allProjects, setAllProjects] = useState<Project[]>([])
+  const [focusAreas, setFocusAreas] = useState<FocusArea[]>([])
+
+  useEffect(() => {
+    getAllProjects().then(setAllProjects)
+    getAllFocusAreas().then((areas) => setFocusAreas(areas as FocusArea[]))
+  }, [])
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'All') return projects
-    return projects.filter((project) => project.focusAreas.includes(activeFilter))
-  }, [activeFilter])
+    if (activeFilter === 'All') return allProjects
+    return allProjects.filter((project) => project.focusAreas.includes(activeFilter))
+  }, [allProjects, activeFilter])
 
   return (
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">

@@ -1,15 +1,21 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { BlogCard } from '@/features/blog/components/BlogCard'
 import { getAllPosts, getAllTags } from '@/lib/blog'
 import { cn } from '@/lib/utils'
+import type { BlogPost } from '@/types/blog'
 
 export default function BlogPage() {
   const [activeTag, setActiveTag] = useState<string | 'All'>('All')
-  const posts = useMemo(() => getAllPosts(), [])
-  const tags = useMemo(() => getAllTags(), [])
+  const [posts, setPosts] = useState<BlogPost[]>([])
+  const [tags, setTags] = useState<string[]>([])
+
+  useEffect(() => {
+    getAllPosts().then(setPosts)
+    getAllTags().then(setTags)
+  }, [])
 
   const filteredPosts = useMemo(() => {
     if (activeTag === 'All') return posts
