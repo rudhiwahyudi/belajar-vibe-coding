@@ -38,12 +38,34 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 export default function ResumePage() {
   const [resume, setResume] = useState<Resume | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getResume().then(setResume)
+    getResume()
+      .then(setResume)
+      .finally(() => setLoading(false))
   }, [])
 
-  if (!resume) return null
+  if (loading) {
+    return (
+      <PageContainer className="py-12 md:py-20">
+        <div className="mx-auto max-w-3xl animate-pulse space-y-4 rounded-xl border border-border bg-card px-8 py-10">
+          <div className="h-6 w-48 rounded bg-muted" />
+          <div className="h-4 w-72 rounded bg-muted" />
+          <div className="h-4 w-full rounded bg-muted" />
+          <div className="h-4 w-5/6 rounded bg-muted" />
+        </div>
+      </PageContainer>
+    )
+  }
+
+  if (!resume) {
+    return (
+      <PageContainer className="py-12 md:py-20">
+        <p className="text-center text-muted-foreground">Resume not available.</p>
+      </PageContainer>
+    )
+  }
 
   return (
     <PageContainer className="py-12 md:py-20">

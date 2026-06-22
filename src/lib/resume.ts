@@ -2,23 +2,24 @@ import { supabase } from '@/lib/supabase'
 import type { Resume } from '@/types/resume'
 
 export async function getResume(): Promise<Resume | null> {
-  const { data } = await supabase.from('resume').select('*').limit(1).single()
-  if (!data) return null
+  const { data } = await supabase.from('resume').select('*').limit(1)
+  const row = data?.[0]
+  if (!row) return null
   return {
-    id: data.id as string,
-    name: data.name as string,
-    tagline: data.tagline as string,
-    summary: data.summary as string,
-    email: (data.email as string) || undefined,
-    phone: (data.phone as string) || undefined,
-    location: (data.location as string) || undefined,
-    website: (data.website as string) || undefined,
-    linkedin: (data.linkedin as string) || undefined,
-    github: (data.github as string) || undefined,
-    experience: (data.experience as Resume['experience']) || [],
-    education: (data.education as Resume['education']) || [],
-    skills: (data.skills as Resume['skills']) || [],
-    pdfUrl: (data.pdf_url as string) || undefined,
-    updatedAt: data.updated_at as string,
+    id: row.id as string,
+    name: row.name as string,
+    tagline: row.tagline as string,
+    summary: row.summary as string,
+    email: (row.email as string) || undefined,
+    phone: (row.phone as string) || undefined,
+    location: (row.location as string) || undefined,
+    website: (row.website as string) || undefined,
+    linkedin: (row.linkedin as string) || undefined,
+    github: (row.github as string) || undefined,
+    experience: (row.experience as Resume['experience']) || [],
+    education: (row.education as Resume['education']) || [],
+    skills: (row.skills as Resume['skills']) || [],
+    pdfUrl: (row.pdf_url as string) || undefined,
+    updatedAt: row.updated_at as string,
   }
 }
