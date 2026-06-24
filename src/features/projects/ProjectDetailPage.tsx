@@ -50,8 +50,16 @@ export default function ProjectDetailPage() {
         <p className="max-w-2xl text-lg text-muted-foreground">{project.tagline}</p>
       </FadeIn>
 
-      <FadeIn className="flex aspect-[21/9] items-center justify-center rounded-3xl border border-border bg-secondary">
-        <span className="text-gradient text-6xl font-bold">{project.title.charAt(0)}</span>
+      <FadeIn className="relative flex aspect-[21/9] items-center justify-center overflow-hidden rounded-3xl border border-border bg-secondary">
+        {project.coverImage ? (
+          <img
+            src={project.coverImage}
+            alt={project.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <span className="text-gradient text-6xl font-bold">{project.title.charAt(0)}</span>
+        )}
       </FadeIn>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_320px]">

@@ -13,9 +13,11 @@ export function ProjectGallery({ images, title }: ProjectGalleryProps) {
           key={image}
           className="relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-secondary"
         >
-          <span className="text-sm text-muted-foreground">
-            {title} — screenshot {index + 1}
-          </span>
+          <img
+            src={image}
+            alt={`${title} — screenshot ${index + 1}`}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
         </div>
       ))}
     </div>
