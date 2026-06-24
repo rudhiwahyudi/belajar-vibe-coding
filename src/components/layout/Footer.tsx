@@ -17,9 +17,7 @@ export function Footer() {
       <PageContainer className="flex flex-col gap-8 py-12 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col gap-3">
           <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
-            <span className="bg-gradient-accent flex size-8 items-center justify-center rounded-lg text-sm font-bold text-white">
-              {siteConfig.initials}
-            </span>
+            <img src="/logo.png" alt={siteConfig.name} className="size-8 object-contain" />
             <span>{siteConfig.name}</span>
           </Link>
           <p className="max-w-sm text-sm text-muted-foreground">{siteConfig.tagline}</p>
