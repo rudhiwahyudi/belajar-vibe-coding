@@ -32,8 +32,18 @@ export function BlogCard({ post, variant = 'default' }: BlogCardProps) {
           variant === 'featured' ? 'aspect-[16/9] lg:aspect-auto lg:w-1/2 lg:border-b-0 lg:border-r' : 'aspect-[16/9]',
         )}
       >
-        <div className="bg-gradient-accent absolute inset-0 opacity-10 transition-opacity group-hover:opacity-20" />
-        <span className="text-gradient text-3xl font-bold">{post.category.charAt(0)}</span>
+        {post.coverImage ? (
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <>
+            <div className="bg-gradient-accent absolute inset-0 opacity-10 transition-opacity group-hover:opacity-20" />
+            <span className="text-gradient text-3xl font-bold">{post.category.charAt(0)}</span>
+          </>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">

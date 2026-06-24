@@ -56,8 +56,16 @@ export default function BlogDetailPage() {
         </div>
       </FadeIn>
 
-      <FadeIn className="flex aspect-[21/9] items-center justify-center rounded-3xl border border-border bg-secondary">
-        <span className="text-gradient text-6xl font-bold">{post.category.charAt(0)}</span>
+      <FadeIn className="relative flex aspect-[21/9] items-center justify-center overflow-hidden rounded-3xl border border-border bg-secondary">
+        {post.coverImage ? (
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <span className="text-gradient text-6xl font-bold">{post.category.charAt(0)}</span>
+        )}
       </FadeIn>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_260px]">

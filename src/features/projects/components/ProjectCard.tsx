@@ -24,8 +24,18 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
           variant === 'featured' ? 'aspect-[16/9]' : 'aspect-[4/3]',
         )}
       >
-        <div className="bg-gradient-accent absolute inset-0 opacity-10 transition-opacity group-hover:opacity-20" />
-        <span className="text-gradient text-4xl font-bold">{project.title.charAt(0)}</span>
+        {project.coverImage ? (
+          <img
+            src={project.coverImage}
+            alt={project.title}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+          <>
+            <div className="bg-gradient-accent absolute inset-0 opacity-10 transition-opacity group-hover:opacity-20" />
+            <span className="text-gradient text-4xl font-bold">{project.title.charAt(0)}</span>
+          </>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">

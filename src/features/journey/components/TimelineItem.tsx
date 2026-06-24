@@ -31,8 +31,12 @@ export function TimelineItem({ item }: { item: JourneyItem }) {
   return (
     <FadeIn className="relative flex gap-6 pb-12 last:pb-0">
       <div className="flex flex-col items-center">
-        <span className="bg-gradient-accent flex size-10 shrink-0 items-center justify-center rounded-full text-white">
-          <Icon className="size-4" />
+        <span className="bg-gradient-accent flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full text-white">
+          {item.logo ? (
+            <img src={item.logo} alt={item.organization} className="size-full object-cover" />
+          ) : (
+            <Icon className="size-4" />
+          )}
         </span>
         <span className="mt-2 w-px flex-1 bg-border last:hidden" />
       </div>

@@ -14,7 +14,7 @@ interface NavbarProps {
 
 export function Navbar({ onOpenCommandPalette }: NavbarProps) {
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl print:hidden">
       <PageContainer className="flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
           <span className="bg-gradient-accent flex size-8 items-center justify-center rounded-lg text-sm font-bold text-white">

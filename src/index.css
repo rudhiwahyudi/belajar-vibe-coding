@@ -152,6 +152,28 @@
     }
 }
 
+/*
+ * Printing (and "Save as PDF") always uses the light palette, even if the
+ * site is in dark mode. Without this, dark mode's near-white text prints
+ * on the default white print background and the page comes out blank.
+ */
+@media print {
+  .dark, :root {
+    --background: #FFFFFF;
+    --foreground: #18181B;
+    --card: #FFFFFF;
+    --card-foreground: #18181B;
+    --muted-foreground: #52525B;
+    --border: rgba(0, 0, 0, 0.12);
+    --primary: #4338CA;
+    --primary-foreground: #FFFFFF;
+  }
+  body {
+    background: #FFFFFF !important;
+    color: #18181B !important;
+  }
+}
+
 @layer utilities {
   .text-gradient {
     background-image: linear-gradient(135deg, var(--brand-accent-from), var(--brand-accent-to));

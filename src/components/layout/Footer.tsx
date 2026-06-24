@@ -13,7 +13,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/60">
+    <footer className="border-t border-border/60 print:hidden">
       <PageContainer className="flex flex-col gap-8 py-12 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col gap-3">
           <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
