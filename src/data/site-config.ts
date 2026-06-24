@@ -13,11 +13,10 @@ I hold a degree in Informatics and also serve as an Assistant Lecturer for Big D
 
 Whether it's mapping a business process, writing a requirements document, or untangling a system integration issue, I focus on practical solutions that work for both the business and the people using the system.`,
   location: 'Indonesia',
-  email: 'rinnecentio@gmail.com',
+  email: 'wahyudirudhi@gmail.com',
   social: {
     github: 'https://github.com/rudhiwahyudi',
-    linkedin: 'https://linkedin.com/in/rudhiwahyudi',
-    x: 'https://x.com/rudhiwahyudi',
+    linkedin: 'https://www.linkedin.com/in/rudi-265952386/',
   },
   resumeUrl: '/resume-rudhi-wahyudi.pdf',
   availability: 'open-to-collab',
