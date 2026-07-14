@@ -7,13 +7,13 @@ import { Button } from '@/components/ui/button'
 export default function AdminLayout() {
   const navigate = useNavigate()
   const [session, setSession] = useState<Session | null | undefined>(undefined)
-  const adminEmail = import.meta.env.VITE_ADMIN_EMAIL
-  const isEmailMatching = !adminEmail || (session?.user?.email === adminEmail)
+  const adminEmail = import.meta.env.VITE_ADMIN_EMAIL?.toLowerCase()
+  const isEmailMatching = !adminEmail || (session?.user?.email?.toLowerCase() === adminEmail)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
       setSession(currentSession)
-      if (currentSession && adminEmail && currentSession.user?.email !== adminEmail) {
+      if (currentSession && adminEmail && currentSession.user?.email?.toLowerCase() !== adminEmail) {
         supabase.auth.signOut().then(() => {
           navigate('/admin/login?error=unauthorized', { replace: true })
         })
@@ -22,7 +22,7 @@ export default function AdminLayout() {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
       setSession(currentSession)
-      if (currentSession && adminEmail && currentSession.user?.email !== adminEmail) {
+      if (currentSession && adminEmail && currentSession.user?.email?.toLowerCase() !== adminEmail) {
         supabase.auth.signOut().then(() => {
           navigate('/admin/login?error=unauthorized', { replace: true })
         })

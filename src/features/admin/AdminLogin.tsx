@@ -13,8 +13,8 @@ export default function AdminLogin() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         // Double check admin email if session already exists
-        const adminEmail = import.meta.env.VITE_ADMIN_EMAIL
-        if (adminEmail && session.user?.email !== adminEmail) {
+        const adminEmail = import.meta.env.VITE_ADMIN_EMAIL?.toLowerCase()
+        if (adminEmail && session.user?.email?.toLowerCase() !== adminEmail) {
           supabase.auth.signOut().then(() => {
             setError('Akses ditolak. Akun Google Anda tidak terdaftar sebagai Admin.')
           })
