@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, Navigate, Outlet, useNavigate } from 'react-router-dom'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import type { Session } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -7,17 +7,33 @@ import { Button } from '@/components/ui/button'
 export default function AdminLayout() {
   const navigate = useNavigate()
   const [session, setSession] = useState<Session | null | undefined>(undefined)
+  const adminEmail = import.meta.env.VITE_ADMIN_EMAIL
+  const isEmailMatching = !adminEmail || (session?.user?.email === adminEmail)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => setSession(session))
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
+    supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+      setSession(currentSession)
+      if (currentSession && adminEmail && currentSession.user?.email !== adminEmail) {
+        supabase.auth.signOut().then(() => {
+          navigate('/admin/login?error=unauthorized', { replace: true })
+        })
+      }
     })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
+      setSession(currentSession)
+      if (currentSession && adminEmail && currentSession.user?.email !== adminEmail) {
+        supabase.auth.signOut().then(() => {
+          navigate('/admin/login?error=unauthorized', { replace: true })
+        })
+      }
+    })
+
     return () => subscription.unsubscribe()
-  }, [])
+  }, [navigate, adminEmail])
 
   if (session === undefined) return null
-  if (!session) return <Navigate to="/admin/login" replace />
+  if (!session || !isEmailMatching) return null
 
   async function handleLogout() {
     await supabase.auth.signOut()
