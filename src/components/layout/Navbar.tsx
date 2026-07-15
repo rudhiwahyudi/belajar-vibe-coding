@@ -2,17 +2,21 @@ import { NavLink, Link } from 'react-router-dom'
 import { Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/shared/ThemeToggle'
+import { LanguageToggle } from '@/components/shared/LanguageToggle'
 import { MobileNav } from '@/components/layout/MobileNav'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { NAV_ITEMS } from '@/lib/constants'
 import { siteConfig } from '@/data/site-config'
 import { cn } from '@/lib/utils'
+import { useLanguage } from '@/hooks/useLanguage'
 
 interface NavbarProps {
   onOpenCommandPalette: () => void
 }
 
 export function Navbar({ onOpenCommandPalette }: NavbarProps) {
+  const { t } = useLanguage()
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl print:hidden">
       <PageContainer className="flex h-16 items-center justify-between gap-4">
@@ -36,7 +40,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
                 )
               }
             >
-              {item.label}
+              {t(`nav.${item.label.toLowerCase()}`)}
             </NavLink>
           ))}
         </nav>
@@ -49,7 +53,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
             className="hidden text-muted-foreground sm:inline-flex"
           >
             <Search className="size-3.5" />
-            Search
+            {t('nav.search')}
             <kbd className="ml-2 rounded border border-border bg-muted px-1.5 font-mono text-[10px] text-muted-foreground">
               ⌘K
             </kbd>
@@ -59,11 +63,12 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
             size="icon"
             onClick={onOpenCommandPalette}
             className="sm:hidden"
-            aria-label="Search"
+            aria-label={t('nav.search')}
           >
             <Search className="size-4" />
           </Button>
           <ThemeToggle />
+          <LanguageToggle />
           <MobileNav />
         </div>
       </PageContainer>

@@ -11,9 +11,11 @@ import {
 } from '@/components/ui/sheet'
 import { NAV_ITEMS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
+  const { t } = useLanguage()
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -26,7 +28,7 @@ export function MobileNav() {
       />
       <SheetContent side="right">
         <SheetHeader>
-          <SheetTitle>Navigation</SheetTitle>
+          <SheetTitle>{t('nav.search') === 'Search' ? 'Navigation' : 'Navigasi'}</SheetTitle>
         </SheetHeader>
         <nav className="flex flex-col gap-1 px-4 pb-4">
           {NAV_ITEMS.map((item) => (
@@ -44,7 +46,7 @@ export function MobileNav() {
                 )
               }
             >
-              {item.label}
+              {t(`nav.${item.label.toLowerCase()}`)}
             </NavLink>
           ))}
         </nav>

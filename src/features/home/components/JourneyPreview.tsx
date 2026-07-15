@@ -7,9 +7,11 @@ import { Button } from '@/components/ui/button'
 import { TimelineItem } from '@/features/journey/components/TimelineItem'
 import { getJourneySorted } from '@/data/journey'
 import type { JourneyItem } from '@/types/journey'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export function JourneyPreview() {
   const [items, setItems] = useState<JourneyItem[]>([])
+  const { t } = useLanguage()
 
   useEffect(() => {
     getJourneySorted().then((all) => setItems(all.slice(0, 3)))
@@ -20,12 +22,12 @@ export function JourneyPreview() {
       <PageContainer className="flex flex-col gap-10">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="Journey"
-            title="Recent milestones"
-            description="A snapshot of where I've worked, studied, and what I'm building toward next."
+            eyebrow={t('journey.eyebrow')}
+            title={t('journey.title')}
+            description={t('journey.description')}
           />
           <Button variant="outline" render={<Link to="/journey" />}>
-            View full journey
+            {t('journey.viewFull')}
             <ArrowRight className="size-4" />
           </Button>
         </div>

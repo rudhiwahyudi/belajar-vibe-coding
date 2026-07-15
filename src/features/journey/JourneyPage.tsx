@@ -5,17 +5,19 @@ import { TimelineItem } from '@/features/journey/components/TimelineItem'
 import { getJourneySorted } from '@/data/journey'
 import { cn } from '@/lib/utils'
 import type { JourneyItem } from '@/types/journey'
-
-const FILTERS: { label: string; value: JourneyItem['type'] | 'All' }[] = [
-  { label: 'All', value: 'All' },
-  { label: 'Work', value: 'work' },
-  { label: 'Education', value: 'education' },
-  { label: 'Milestones', value: 'achievement' },
-]
+import { useLanguage } from '@/hooks/useLanguage'
 
 export default function JourneyPage() {
   const [filter, setFilter] = useState<JourneyItem['type'] | 'All'>('All')
   const [items, setItems] = useState<JourneyItem[]>([])
+  const { t } = useLanguage()
+
+  const filters = useMemo<{ label: string; value: JourneyItem['type'] | 'All' }[]>(() => [
+    { label: t('journeyPage.filterAll'), value: 'All' },
+    { label: t('journeyPage.filterWork'), value: 'work' },
+    { label: t('journeyPage.filterEducation'), value: 'education' },
+    { label: t('journeyPage.filterMilestones'), value: 'achievement' },
+  ], [t])
 
   useEffect(() => {
     getJourneySorted().then(setItems)
@@ -29,13 +31,13 @@ export default function JourneyPage() {
   return (
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
       <SectionHeading
-        eyebrow="Journey"
-        title="Where I've been, and where I'm headed"
-        description="A timeline of my work experience, education, and the milestones along the way."
+        eyebrow={t('journeyPage.eyebrow')}
+        title={t('journeyPage.title')}
+        description={t('journeyPage.description')}
       />
 
       <div className="flex flex-wrap gap-2">
-        {FILTERS.map((option) => (
+        {filters.map((option) => (
           <button
             key={option.value}
             type="button"

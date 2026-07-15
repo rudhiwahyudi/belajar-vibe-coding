@@ -5,6 +5,7 @@ import { PageContainer } from '@/components/layout/PageContainer'
 import { getResume } from '@/lib/resume'
 import { TechBadge } from '@/components/shared/TechBadge'
 import type { Resume } from '@/types/resume'
+import { useLanguage } from '@/hooks/useLanguage'
 
 function ContactLink({
   href,
@@ -39,6 +40,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 export default function ResumePage() {
   const [resume, setResume] = useState<Resume | null>(null)
   const [loading, setLoading] = useState(true)
+  const { t } = useLanguage()
 
   useEffect(() => {
     getResume()
@@ -62,7 +64,7 @@ export default function ResumePage() {
   if (!resume) {
     return (
       <PageContainer className="py-12 md:py-20">
-        <p className="text-center text-muted-foreground">Resume not available.</p>
+        <p className="text-center text-muted-foreground">{t('resumePage.notAvailable')}</p>
       </PageContainer>
     )
   }
@@ -77,7 +79,7 @@ export default function ResumePage() {
           className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
         >
           <Printer className="size-3.5" />
-          Print
+          {t('resumePage.print')}
         </button>
         {resume.pdfUrl && (
           <a
@@ -86,7 +88,7 @@ export default function ResumePage() {
             className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
             <Download className="size-3.5" />
-            Download PDF
+            {t('resumePage.downloadPdf')}
           </a>
         )}
       </div>
@@ -137,7 +139,7 @@ export default function ResumePage() {
         {/* Summary */}
         {resume.summary && (
           <section className="mb-8">
-            <SectionTitle>Summary</SectionTitle>
+            <SectionTitle>{t('resumePage.summary')}</SectionTitle>
             <p className="text-sm leading-relaxed text-muted-foreground">{resume.summary}</p>
           </section>
         )}
@@ -145,7 +147,7 @@ export default function ResumePage() {
         {/* Experience */}
         {resume.experience.length > 0 && (
           <section className="mb-8">
-            <SectionTitle>Experience</SectionTitle>
+            <SectionTitle>{t('resumePage.experience')}</SectionTitle>
             <div className="flex flex-col gap-6">
               {resume.experience.map((exp, i) => (
                 <div key={i} className="flex flex-col gap-1.5">
@@ -178,7 +180,7 @@ export default function ResumePage() {
         {/* Education */}
         {resume.education.length > 0 && (
           <section className="mb-8">
-            <SectionTitle>Education</SectionTitle>
+            <SectionTitle>{t('resumePage.education')}</SectionTitle>
             <div className="flex flex-col gap-4">
               {resume.education.map((edu, i) => (
                 <div key={i} className="flex flex-wrap items-start justify-between gap-1">
@@ -199,7 +201,7 @@ export default function ResumePage() {
         {/* Skills */}
         {resume.skills.length > 0 && (
           <section>
-            <SectionTitle>Skills</SectionTitle>
+            <SectionTitle>{t('resumePage.skills')}</SectionTitle>
             <div className="flex flex-col gap-3">
               {resume.skills.map((group, i) => (
                 <div key={i} className="flex flex-col gap-1.5 sm:flex-row sm:gap-4">

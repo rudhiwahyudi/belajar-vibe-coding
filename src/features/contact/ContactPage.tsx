@@ -3,14 +3,17 @@ import { SectionHeading } from '@/components/shared/SectionHeading'
 import { FadeIn } from '@/components/motion/FadeIn'
 import { ContactForm } from '@/features/contact/components/ContactForm'
 import { ContactInfoCard } from '@/features/contact/components/ContactInfoCard'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export default function ContactPage() {
+  const { t } = useLanguage()
+
   return (
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
       <SectionHeading
-        eyebrow="Contact"
-        title="Let's build something together"
-        description="Whether it's a role, a project, a collaboration, or just a question about business process and system analysis — I'd love to hear from you."
+        eyebrow={t('nav.contact')}
+        title={t('contact.title')}
+        description={t('contact.description')}
       />
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_360px]">

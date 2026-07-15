@@ -4,6 +4,7 @@ import { PageContainer } from '@/components/layout/PageContainer'
 import { GithubIcon, LinkedinIcon, XIcon } from '@/components/icons/BrandIcons'
 import { NAV_ITEMS } from '@/lib/constants'
 import { siteConfig } from '@/data/site-config'
+import { useLanguage } from '@/hooks/useLanguage'
 
 const socialLinks = [
   { label: 'GitHub', href: siteConfig.social.github, icon: GithubIcon },
@@ -12,6 +13,8 @@ const socialLinks = [
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href))
 
 export function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="border-t border-border/60 print:hidden">
       <PageContainer className="flex flex-col gap-8 py-12 md:flex-row md:items-start md:justify-between">
@@ -20,7 +23,7 @@ export function Footer() {
             <img src="/logo.png" alt={siteConfig.name} className="size-8 object-contain" />
             <span>{siteConfig.name}</span>
           </Link>
-          <p className="max-w-sm text-sm text-muted-foreground">{siteConfig.tagline}</p>
+          <p className="max-w-sm text-sm text-muted-foreground">{t('footer.tagline')}</p>
           <div className="flex items-center gap-2">
             {socialLinks.map((link) => (
               <a
@@ -51,15 +54,14 @@ export function Footer() {
               to={item.href}
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
-              {item.label}
+              {t(`nav.${item.label.toLowerCase()}`)}
             </Link>
           ))}
         </nav>
       </PageContainer>
       <PageContainer className="border-t border-border/60 py-6">
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {siteConfig.name}. Built with React, Tailwind CSS, and
-          Framer Motion.
+          © {new Date().getFullYear()} {siteConfig.name}. {t('footer.builtWith')}
         </p>
       </PageContainer>
     </footer>

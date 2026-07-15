@@ -5,10 +5,12 @@ import { CertificateCard } from '@/features/certificates/components/CertificateC
 import { getAllCertificates } from '@/lib/certificates'
 import { cn } from '@/lib/utils'
 import type { Certificate } from '@/types/certificate'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export default function CertificatesPage() {
   const [certs, setCerts] = useState<Certificate[]>([])
   const [activeTag, setActiveTag] = useState('All')
+  const { t } = useLanguage()
 
   useEffect(() => {
     getAllCertificates().then(setCerts)
@@ -28,9 +30,9 @@ export default function CertificatesPage() {
   return (
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
       <SectionHeading
-        eyebrow="Certificates"
-        title="Credentials & certifications"
-        description="Professional certifications and courses I've completed to sharpen my skills."
+        eyebrow={t('certificatesPage.eyebrow')}
+        title={t('certificatesPage.title')}
+        description={t('certificatesPage.description')}
       />
 
       {allTags.length > 1 && (
@@ -47,7 +49,7 @@ export default function CertificatesPage() {
                   : 'border-border text-muted-foreground hover:border-primary/30 hover:text-foreground',
               )}
             >
-              {tag}
+              {tag === 'All' ? t('certificatesPage.filterAll') : tag}
             </button>
           ))}
         </div>
@@ -55,7 +57,7 @@ export default function CertificatesPage() {
 
       {filtered.length === 0 ? (
         <p className="py-16 text-center text-muted-foreground">
-          {certs.length === 0 ? 'No certificates yet.' : 'No certificates match this filter.'}
+          {certs.length === 0 ? t('certificatesPage.noCertificatesYet') : t('certificatesPage.noCertificatesMatch')}
         </p>
       ) : (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

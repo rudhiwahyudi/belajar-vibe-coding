@@ -7,9 +7,11 @@ import { Button } from '@/components/ui/button'
 import { CertificateCard } from '@/features/certificates/components/CertificateCard'
 import { getAllCertificates } from '@/lib/certificates'
 import type { Certificate } from '@/types/certificate'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export function CertificatesPreview() {
   const [certs, setCerts] = useState<Certificate[]>([])
+  const { t } = useLanguage()
 
   useEffect(() => {
     getAllCertificates().then((all) => setCerts(all.slice(0, 3)))
@@ -22,12 +24,12 @@ export function CertificatesPreview() {
       <PageContainer className="flex flex-col gap-10">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="Certificates"
-            title="Credentials & certifications"
-            description="A selection of professional certifications and courses I've completed."
+            eyebrow={t('certificates.eyebrow')}
+            title={t('certificates.title')}
+            description={t('certificates.description')}
           />
           <Button variant="outline" render={<Link to="/certificates" />}>
-            View all
+            {t('certificates.viewAll')}
             <ArrowRight className="size-4" />
           </Button>
         </div>

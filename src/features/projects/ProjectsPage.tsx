@@ -7,11 +7,13 @@ import { ProjectFilterBar } from '@/features/projects/components/ProjectFilterBa
 import { getAllProjects, getAllFocusAreas } from '@/data/projects'
 import type { Project } from '@/types/project'
 import type { FocusArea } from '@/types/common'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<FocusArea | 'All'>('All')
   const [allProjects, setAllProjects] = useState<Project[]>([])
   const [focusAreas, setFocusAreas] = useState<FocusArea[]>([])
+  const { t } = useLanguage()
 
   useEffect(() => {
     getAllProjects().then(setAllProjects)
@@ -26,9 +28,9 @@ export default function ProjectsPage() {
   return (
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
       <SectionHeading
-        eyebrow="Projects"
-        title="Things I've worked on"
-        description="A selection of business process analysis, system analysis, and research-driven work — from my current role to academic projects."
+        eyebrow={t('projectsPage.eyebrow')}
+        title={t('projectsPage.title')}
+        description={t('projectsPage.description')}
       />
 
       <ProjectFilterBar focusAreas={focusAreas} active={activeFilter} onChange={setActiveFilter} />
@@ -43,7 +45,7 @@ export default function ProjectsPage() {
 
       {filteredProjects.length === 0 ? (
         <p className="py-12 text-center text-muted-foreground">
-          No projects match this filter yet.
+          {t('projectsPage.noProjects')}
         </p>
       ) : null}
     </PageContainer>

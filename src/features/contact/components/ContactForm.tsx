@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { useLanguage } from '@/hooks/useLanguage'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Please enter your name.'),
@@ -23,6 +24,7 @@ const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID
 
 export function ContactForm() {
   const [status, setStatus] = useState<SubmitStatus>('idle')
+  const { t } = useLanguage()
 
   const {
     register,
@@ -52,16 +54,18 @@ export function ContactForm() {
     }
   }
 
+  const isEn = t('nav.search') === 'Search'
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="name">Name</Label>
-          <Input id="name" placeholder="Your name" {...register('name')} aria-invalid={!!errors.name} />
+          <Label htmlFor="name">{t('contact.form.name')}</Label>
+          <Input id="name" placeholder={isEn ? 'Your name' : 'Nama Anda'} {...register('name')} aria-invalid={!!errors.name} />
           {errors.name ? <p className="text-xs text-destructive">{errors.name.message}</p> : null}
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">{t('contact.form.email')}</Label>
           <Input
             id="email"
             type="email"
@@ -74,10 +78,10 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="subject">Subject</Label>
+        <Label htmlFor="subject">{t('contact.form.subject')}</Label>
         <Input
           id="subject"
-          placeholder="What's this about?"
+          placeholder={isEn ? "What's this about?" : 'Mengenai apa ini?'}
           {...register('subject')}
           aria-invalid={!!errors.subject}
         />
@@ -85,11 +89,15 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="message">Message</Label>
+        <Label htmlFor="message">{t('contact.form.message')}</Label>
         <Textarea
           id="message"
           rows={6}
-          placeholder="Tell me a bit about your project, role, or question..."
+          placeholder={
+            isEn
+              ? 'Tell me a bit about your project, role, or question...'
+              : 'Ceritakan sedikit tentang proyek, lowongan pekerjaan, atau pertanyaan Anda...'
+          }
           {...register('message')}
           aria-invalid={!!errors.message}
         />
@@ -98,20 +106,22 @@ export function ContactForm() {
 
       <Button type="submit" disabled={isSubmitting} className="self-start">
         {isSubmitting ? <Loader2 className="size-4 animate-spin" /> : null}
-        Send message
+        {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
       </Button>
 
       {status === 'success' ? (
         <p className="flex items-center gap-2 text-sm text-success">
           <CheckCircle2 className="size-4" />
-          Thanks for reaching out — I'll get back to you soon.
+          {t('contact.form.success')}
         </p>
       ) : null}
 
       {status === 'error' ? (
         <p className="flex items-center gap-2 text-sm text-destructive">
           <AlertCircle className="size-4" />
-          Something went wrong. Please try again or email me directly.
+          {isEn
+            ? 'Something went wrong. Please try again or email me directly.'
+            : 'Terjadi kesalahan. Silakan coba lagi atau kirim email langsung ke saya.'}
         </p>
       ) : null}
     </form>

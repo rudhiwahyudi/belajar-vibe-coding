@@ -8,9 +8,11 @@ import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { ProjectCard } from '@/features/projects/components/ProjectCard'
 import { getFeaturedProjects } from '@/data/projects'
 import type { Project } from '@/types/project'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export function FeaturedProjects() {
   const [projects, setProjects] = useState<Project[]>([])
+  const { t } = useLanguage()
 
   useEffect(() => {
     getFeaturedProjects().then(setProjects)
@@ -21,12 +23,12 @@ export function FeaturedProjects() {
       <PageContainer className="flex flex-col gap-10">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="Selected work"
-            title="Featured projects"
-            description="A mix of business process analysis, system analysis, and data-driven initiatives."
+            eyebrow={t('featuredProjects.eyebrow')}
+            title={t('featuredProjects.title')}
+            description={t('featuredProjects.description')}
           />
           <Button variant="outline" render={<Link to="/projects" />}>
-            View all projects
+            {t('featuredProjects.viewAll')}
             <ArrowRight className="size-4" />
           </Button>
         </div>

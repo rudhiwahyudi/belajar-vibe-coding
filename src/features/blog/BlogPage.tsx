@@ -6,11 +6,13 @@ import { BlogCard } from '@/features/blog/components/BlogCard'
 import { getAllPosts, getAllTags } from '@/lib/blog'
 import { cn } from '@/lib/utils'
 import type { BlogPost } from '@/types/blog'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export default function BlogPage() {
   const [activeTag, setActiveTag] = useState<string | 'All'>('All')
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [tags, setTags] = useState<string[]>([])
+  const { t } = useLanguage()
 
   useEffect(() => {
     getAllPosts().then(setPosts)
@@ -27,9 +29,9 @@ export default function BlogPage() {
   return (
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
       <SectionHeading
-        eyebrow="Blog"
-        title="Notes on analysis & technology"
-        description="Write-ups on business process analysis, system analysis, data analytics, and lessons from research and teaching."
+        eyebrow={t('blogPage.eyebrow')}
+        title={t('blogPage.title')}
+        description={t('blogPage.description')}
       />
 
       <div className="flex flex-wrap gap-2">
@@ -45,13 +47,13 @@ export default function BlogPage() {
                 : 'border-border text-muted-foreground hover:border-primary/30 hover:text-foreground',
             )}
           >
-            {tag}
+            {tag === 'All' ? t('projectsPage.filterAll') : tag}
           </button>
         ))}
       </div>
 
       {filteredPosts.length === 0 ? (
-        <p className="py-12 text-center text-muted-foreground">No posts match this tag yet.</p>
+        <p className="py-12 text-center text-muted-foreground">{t('blogPage.noPosts')}</p>
       ) : (
         <StaggerGroup className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {featured ? (

@@ -8,9 +8,11 @@ import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { BlogCard } from '@/features/blog/components/BlogCard'
 import { getAllPosts } from '@/lib/blog'
 import type { BlogPost } from '@/types/blog'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export function BlogPreview() {
   const [posts, setPosts] = useState<BlogPost[]>([])
+  const { t } = useLanguage()
 
   useEffect(() => {
     getAllPosts().then((all) => setPosts(all.slice(0, 3)))
@@ -23,12 +25,12 @@ export function BlogPreview() {
       <PageContainer className="flex flex-col gap-10">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="Writing"
-            title="From the blog"
-            description="Notes on business process analysis, system analysis, and data analytics."
+            eyebrow={t('blog.eyebrow')}
+            title={t('blog.title')}
+            description={t('blog.description')}
           />
           <Button variant="outline" render={<Link to="/blog" />}>
-            Read the blog
+            {t('blog.readBlog')}
             <ArrowRight className="size-4" />
           </Button>
         </div>

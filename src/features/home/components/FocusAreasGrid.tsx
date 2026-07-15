@@ -3,52 +3,51 @@ import type { FocusArea } from '@/types/common'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
+import { useLanguage } from '@/hooks/useLanguage'
 
 interface FocusAreaCard {
-  area: FocusArea
+  area: FocusArea | string
   icon: typeof ClipboardList
   description: string
 }
 
-const FOCUS_AREAS: FocusAreaCard[] = [
-  {
-    area: 'System Analysis',
-    icon: ClipboardList,
-    description:
-      'Gathering requirements, mapping workflows, and translating business needs into clear specifications for development teams.',
-  },
-  {
-    area: 'Business Process Analysis',
-    icon: Workflow,
-    description:
-      'Analyzing and improving business processes through BPMN mapping, gap analysis, and close stakeholder collaboration.',
-  },
-  {
-    area: 'Technology Solutions',
-    icon: Puzzle,
-    description:
-      'Solving operational and system integration challenges with practical, well-documented technical solutions.',
-  },
-  {
-    area: 'Data & Research',
-    icon: BarChart3,
-    description:
-      'Using SQL and data analysis to support decisions, teaching, and academic research.',
-  },
-]
-
 export function FocusAreasGrid() {
+  const { t } = useLanguage()
+
+  const focusAreas: FocusAreaCard[] = [
+    {
+      area: t('focusAreas.items.systemAnalysis.title'),
+      icon: ClipboardList,
+      description: t('focusAreas.items.systemAnalysis.desc'),
+    },
+    {
+      area: t('focusAreas.items.businessAnalysis.title'),
+      icon: Workflow,
+      description: t('focusAreas.items.businessAnalysis.desc'),
+    },
+    {
+      area: t('focusAreas.items.techSolutions.title'),
+      icon: Puzzle,
+      description: t('focusAreas.items.techSolutions.desc'),
+    },
+    {
+      area: t('focusAreas.items.dataResearch.title'),
+      icon: BarChart3,
+      description: t('focusAreas.items.dataResearch.desc'),
+    },
+  ]
+
   return (
     <section className="py-16 md:py-24">
       <PageContainer className="flex flex-col gap-10">
         <SectionHeading
-          eyebrow="What I do"
-          title="Focus areas"
-          description="A blend of analytical and technical disciplines that shape how I bridge business needs and technology."
+          eyebrow={t('focusAreas.eyebrow')}
+          title={t('focusAreas.title')}
+          description={t('focusAreas.description')}
         />
 
         <StaggerGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {FOCUS_AREAS.map(({ area, icon: Icon, description }) => (
+          {focusAreas.map(({ area, icon: Icon, description }) => (
             <StaggerItem
               key={area}
               className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6"

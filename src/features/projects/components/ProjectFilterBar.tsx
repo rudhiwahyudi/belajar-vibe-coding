@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import type { FocusArea } from '@/types/common'
+import { useLanguage } from '@/hooks/useLanguage'
 
 interface ProjectFilterBarProps {
   focusAreas: FocusArea[]
@@ -8,7 +9,17 @@ interface ProjectFilterBarProps {
 }
 
 export function ProjectFilterBar({ focusAreas, active, onChange }: ProjectFilterBarProps) {
+  const { t } = useLanguage()
   const options: (FocusArea | 'All')[] = ['All', ...focusAreas]
+
+  function getOptionLabel(option: string) {
+    if (option === 'All') return t('projectsPage.filterAll')
+    if (option === 'System Analysis') return t('focusAreas.items.systemAnalysis.title')
+    if (option === 'Business Process Analysis') return t('focusAreas.items.businessAnalysis.title')
+    if (option === 'Technology Solutions') return t('focusAreas.items.techSolutions.title')
+    if (option === 'Data & Research') return t('focusAreas.items.dataResearch.title')
+    return option
+  }
 
   return (
     <div className="flex flex-wrap gap-2">
@@ -24,7 +35,7 @@ export function ProjectFilterBar({ focusAreas, active, onChange }: ProjectFilter
               : 'border-border text-muted-foreground hover:border-primary/30 hover:text-foreground',
           )}
         >
-          {option}
+          {getOptionLabel(option)}
         </button>
       ))}
     </div>
