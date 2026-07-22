@@ -57,7 +57,7 @@ export function TimelineItem({ item }: { item: JourneyItem }) {
           <ul className="mt-1 flex flex-col gap-1.5">
             {item.bullets.map((bullet) => (
               <li key={bullet} className="flex gap-2 text-sm text-muted-foreground">
-                <span className="text-gradient mt-1 font-bold">—</span>
+                <span className="text-gradient mt-1 font-bold">•</span>
                 {bullet}
               </li>
             ))}

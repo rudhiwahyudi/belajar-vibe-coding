@@ -85,7 +85,7 @@ export default function AdminProjectsPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">
-                    {project.featured ? '★' : '—'}
+                    {project.featured ? '★' : '-'}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex justify-end gap-2">

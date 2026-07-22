@@ -77,7 +77,7 @@ export default function AdminBlogPage() {
                   <td className="px-4 py-3 text-muted-foreground">
                     {post.published_at
                       ? new Date(post.published_at).toLocaleDateString()
-                      : '—'}
+                      : '-'}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex justify-end gap-2">

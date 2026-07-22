@@ -61,7 +61,13 @@ export function ContactForm() {
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <Label htmlFor="name">{t('contact.form.name')}</Label>
-          <Input id="name" placeholder={isEn ? 'Your name' : 'Nama Anda'} {...register('name')} aria-invalid={!!errors.name} />
+          <Input
+            id="name"
+            placeholder={isEn ? 'Your name' : 'Nama Anda'}
+            {...register('name')}
+            aria-invalid={!!errors.name}
+            className="bg-white/[0.04] dark:bg-black/[0.2] border-white/[0.15] dark:border-white/[0.08] focus-visible:bg-white/[0.06] dark:focus-visible:bg-black/[0.3]"
+          />
           {errors.name ? <p className="text-xs text-destructive">{errors.name.message}</p> : null}
         </div>
         <div className="flex flex-col gap-2">
@@ -72,6 +78,7 @@ export function ContactForm() {
             placeholder="you@example.com"
             {...register('email')}
             aria-invalid={!!errors.email}
+            className="bg-white/[0.04] dark:bg-black/[0.2] border-white/[0.15] dark:border-white/[0.08] focus-visible:bg-white/[0.06] dark:focus-visible:bg-black/[0.3]"
           />
           {errors.email ? <p className="text-xs text-destructive">{errors.email.message}</p> : null}
         </div>
@@ -84,6 +91,7 @@ export function ContactForm() {
           placeholder={isEn ? "What's this about?" : 'Mengenai apa ini?'}
           {...register('subject')}
           aria-invalid={!!errors.subject}
+          className="bg-white/[0.04] dark:bg-black/[0.2] border-white/[0.15] dark:border-white/[0.08] focus-visible:bg-white/[0.06] dark:focus-visible:bg-black/[0.3]"
         />
         {errors.subject ? <p className="text-xs text-destructive">{errors.subject.message}</p> : null}
       </div>
@@ -100,6 +108,7 @@ export function ContactForm() {
           }
           {...register('message')}
           aria-invalid={!!errors.message}
+          className="bg-white/[0.04] dark:bg-black/[0.2] border-white/[0.15] dark:border-white/[0.08] focus-visible:bg-white/[0.06] dark:focus-visible:bg-black/[0.3]"
         />
         {errors.message ? <p className="text-xs text-destructive">{errors.message.message}</p> : null}
       </div>

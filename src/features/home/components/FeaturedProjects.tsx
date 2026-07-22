@@ -6,7 +6,7 @@ import { SectionHeading } from '@/components/shared/SectionHeading'
 import { Button } from '@/components/ui/button'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { ProjectCard } from '@/features/projects/components/ProjectCard'
-import { getFeaturedProjects } from '@/data/projects'
+import { getFeaturedProjects, getAllProjects } from '@/data/projects'
 import type { Project } from '@/types/project'
 import { useLanguage } from '@/hooks/useLanguage'
 
@@ -15,7 +15,14 @@ export function FeaturedProjects() {
   const { t } = useLanguage()
 
   useEffect(() => {
-    getFeaturedProjects().then(setProjects)
+    getFeaturedProjects().then((data) => {
+      if (data.length > 0) {
+        setProjects(data)
+      } else {
+        // Fallback to showing recent projects if no projects are marked as featured in database
+        getAllProjects().then((all) => setProjects(all.slice(0, 3)))
+      }
+    })
   }, [])
 
   return (
@@ -33,10 +40,10 @@ export function FeaturedProjects() {
           </Button>
         </div>
 
-        <StaggerGroup className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <StaggerItem key={project.slug} className={index === 0 ? 'lg:col-span-2' : undefined}>
-              <ProjectCard project={project} variant={index === 0 ? 'featured' : 'default'} />
+        <StaggerGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <StaggerItem key={project.slug}>
+              <ProjectCard project={project} />
             </StaggerItem>
           ))}
         </StaggerGroup>

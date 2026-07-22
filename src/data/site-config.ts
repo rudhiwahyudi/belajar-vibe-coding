@@ -4,10 +4,10 @@ export const siteConfig: SiteConfig = {
   name: 'Rudhi Wahyudi',
   initials: 'RW',
   role: 'System Analyst',
-  tagline: 'Business Process Analyst & Technology Problem Solver — turning business needs into practical system solutions.',
+  tagline: 'Business Process Analyst & Technology Problem Solver, turning business needs into practical system solutions.',
   shortBio:
-    'System Analyst at Astra Credit Companies, focused on business process analysis, requirements gathering, and system integration — also an Assistant Lecturer in Big Data & Data Analytics.',
-  bio: `I'm a System Analyst at Astra Credit Companies, where I work at the intersection of business operations and technology — analyzing processes, gathering requirements, and coordinating with stakeholders and development teams to design system improvements that fit how the business actually works.
+    'System Analyst at Astra Credit Companies, focused on business process analysis, requirements gathering, and system integration, also an Assistant Lecturer in Big Data & Data Analytics.',
+  bio: `I'm a System Analyst at Astra Credit Companies, where I work at the intersection of business operations and technology, analyzing processes, gathering requirements, and coordinating with stakeholders and development teams to design system improvements that fit how the business actually works.
 
 I hold a degree in Informatics and also serve as an Assistant Lecturer for Big Data and Data Analytics courses, helping students build practical skills in SQL and data analysis. As a former PKM (Program Kreativitas Mahasiswa) Project Leader and co-author of two research publications, I bring a structured, research-driven approach to problem solving.
 

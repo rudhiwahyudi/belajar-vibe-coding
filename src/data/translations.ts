@@ -155,7 +155,7 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
     },
     hero: {
       role: 'System Analyst',
-      tagline: 'Business Process Analyst & Technology Problem Solver — turning business needs into practical system solutions.',
+      tagline: 'Business Process Analyst & Technology Problem Solver, turning business needs into practical system solutions.',
       viewProjects: 'View projects',
       getInTouch: 'Get in touch',
       resume: 'Résumé',
@@ -221,7 +221,7 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
     },
     contact: {
       title: "Let's build something together",
-      description: "Whether it's a role, a project, a collaboration, or just a question about business process and system analysis — I'd love to hear from you.",
+      description: "Whether it's a role, a project, a collaboration, or just a question about business process and system analysis, I'd love to hear from you.",
       form: {
         name: 'Full Name',
         email: 'Email Address',
@@ -229,11 +229,11 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
         message: 'Message',
         sending: 'Sending...',
         send: 'Send Message',
-        success: "Thanks for reaching out — I'll get back to you soon.",
+        success: "Thanks for reaching out. I'll get back to you soon.",
       },
     },
     footer: {
-      tagline: 'Business Process Analyst & Technology Problem Solver — turning business needs into practical system solutions.',
+      tagline: 'Business Process Analyst & Technology Problem Solver, turning business needs into practical system solutions.',
       builtWith: 'Built with React, Tailwind CSS, and Framer Motion.',
     },
     commandPalette: {
@@ -252,12 +252,12 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
       backHome: 'Go Back Home',
     },
     bio: {
-      shortBio: 'System Analyst at Astra Credit Companies, focused on business process analysis, requirements gathering, and system integration — also an Assistant Lecturer in Big Data & Data Analytics.',
+      shortBio: 'System Analyst at Astra Credit Companies, focused on business process analysis, requirements gathering, and system integration, also an Assistant Lecturer in Big Data & Data Analytics.',
     },
     projectsPage: {
       eyebrow: 'Projects',
       title: "Things I've worked on",
-      description: 'A selection of business process analysis, system analysis, and research-driven work — from my current role to academic projects.',
+      description: 'A selection of business process analysis, system analysis, and research-driven work, from my current role to academic projects.',
       filterAll: 'All',
       noProjects: 'No projects match this filter yet.',
     },
@@ -309,7 +309,7 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
     },
     hero: {
       role: 'System Analyst',
-      tagline: 'Analis Proses Bisnis & Pemecah Masalah Teknologi — mengubah kebutuhan bisnis menjadi solusi sistem praktis.',
+      tagline: 'Analis Proses Bisnis & Pemecah Masalah Teknologi, mengubah kebutuhan bisnis menjadi solusi sistem praktis.',
       viewProjects: 'Lihat proyek',
       getInTouch: 'Hubungi saya',
       resume: 'Resume',
@@ -375,7 +375,7 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
     },
     contact: {
       title: 'Mari membangun sesuatu bersama',
-      description: 'Baik itu lowongan pekerjaan, proyek kerjasama, kolaborasi, atau sekadar pertanyaan mengenai analisis proses bisnis dan sistem — saya akan senang mendengar dari Anda.',
+      description: 'Baik itu lowongan pekerjaan, proyek kerjasama, kolaborasi, atau sekadar pertanyaan mengenai analisis proses bisnis dan sistem, saya akan senang mendengar dari Anda.',
       form: {
         name: 'Nama Lengkap',
         email: 'Alamat Email',
@@ -383,11 +383,11 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
         message: 'Pesan',
         sending: 'Mengirim...',
         send: 'Kirim Pesan',
-        success: 'Terima kasih telah menghubungi — saya akan segera membalas pesan Anda.',
+        success: 'Terima kasih telah menghubungi. Saya akan segera membalas pesan Anda.',
       },
     },
     footer: {
-      tagline: 'Analis Proses Bisnis & Pemecah Masalah Teknologi — mengubah kebutuhan bisnis menjadi solusi sistem praktis.',
+      tagline: 'Analis Proses Bisnis & Pemecah Masalah Teknologi, mengubah kebutuhan bisnis menjadi solusi sistem praktis.',
       builtWith: 'Dibuat dengan React, Tailwind CSS, dan Framer Motion.',
     },
     commandPalette: {
@@ -406,12 +406,12 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
       backHome: 'Kembali ke Beranda',
     },
     bio: {
-      shortBio: 'System Analyst di Astra Credit Companies, berfokus pada analisis proses bisnis, pengumpulan kebutuhan, dan integrasi sistem — juga Asisten Dosen di bidang Big Data & Data Analytics.',
+      shortBio: 'System Analyst di Astra Credit Companies, berfokus pada analisis proses bisnis, pengumpulan kebutuhan, dan integrasi sistem, juga Asisten Dosen di bidang Big Data & Data Analytics.',
     },
     projectsPage: {
       eyebrow: 'Proyek',
       title: 'Karya yang telah saya kerjakan',
-      description: 'Pilihan analisis proses bisnis, analisis sistem, dan karya berbasis penelitian — mulai dari peran saya saat ini hingga proyek akademik.',
+      description: 'Pilihan analisis proses bisnis, analisis sistem, dan karya berbasis penelitian, mulai dari peran saya saat ini hingga proyek akademik.',
       filterAll: 'Semua',
       noProjects: 'Belum ada proyek yang cocok dengan filter ini.',
     },

@@ -72,7 +72,7 @@ export default function ProjectDetailPage() {
               <ul className="flex flex-col gap-2">
                 {project.highlights.map((highlight) => (
                   <li key={highlight} className="flex gap-2 text-sm text-muted-foreground">
-                    <span className="text-gradient mt-1 font-bold">—</span>
+                    <span className="text-gradient mt-1 font-bold">•</span>
                     {highlight}
                   </li>
                 ))}

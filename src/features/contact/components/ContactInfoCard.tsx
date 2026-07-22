@@ -9,7 +9,7 @@ export function ContactInfoCard() {
   const isEn = t('nav.search') === 'Search'
 
   return (
-    <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6">
+    <div className="flex flex-col gap-6 rounded-2xl border border-white/[0.12] dark:border-white/[0.06] bg-white/[0.03] dark:bg-black/[0.15] backdrop-blur-xl shadow-2xl shadow-black/5 p-6">
       <StatusPill label={t(`hero.availability.${siteConfig.availability}`)} tone="success" />
 
       <p className="text-sm text-muted-foreground">{t('bio.shortBio')}</p>
