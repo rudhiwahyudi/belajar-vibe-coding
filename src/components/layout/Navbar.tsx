@@ -18,14 +18,16 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
   const { t } = useLanguage()
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl print:hidden">
-      <PageContainer className="flex h-16 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <img src="/logo.png" alt={siteConfig.name} className="size-8 object-contain" />
-          <span className="hidden sm:inline">{siteConfig.name}</span>
+    <header className="sticky top-0 z-40 border-b border-border/40 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 print:hidden">
+      <PageContainer className="flex h-[60px] items-center justify-between gap-4 md:h-[64px]">
+        <Link to="/" className="flex items-center gap-2.5 font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg">
+          <span className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
+            <img src="/logo.png" alt={siteConfig.name} className="size-5 object-contain brightness-0 invert dark:brightness-0 dark:invert-0" />
+          </span>
+          <span className="hidden text-[15px] font-medium tracking-tight sm:inline">{siteConfig.name}</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.href}
@@ -33,10 +35,10 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
               end={item.href === '/'}
               className={({ isActive }) =>
                 cn(
-                  'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
+                  'rounded-full px-3.5 py-1.5 text-[13.5px] font-[450] tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
                   isActive
-                    ? 'bg-secondary text-foreground'
-                    : 'text-muted-foreground hover:text-foreground',
+                    ? 'bg-foreground text-background'
+                    : 'text-muted-foreground hover:bg-secondary hover:text-foreground',
                 )
               }
             >
@@ -50,11 +52,12 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
             variant="outline"
             size="sm"
             onClick={onOpenCommandPalette}
-            className="hidden text-muted-foreground sm:inline-flex"
+            aria-label={`${t('nav.search')} (⌘K)`}
+            className="hidden h-9 min-h-[36px] rounded-full border-border/60 bg-secondary/50 px-3.5 text-[13px] font-normal text-muted-foreground hover:bg-secondary hover:text-foreground sm:inline-flex focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
-            <Search className="size-3.5" />
+            <Search className="size-3.5 opacity-60" aria-hidden />
             {t('nav.search')}
-            <kbd className="ml-2 rounded border border-border bg-muted px-1.5 font-mono text-[10px] text-muted-foreground">
+            <kbd className="ml-1.5 hidden rounded-md border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] leading-none text-muted-foreground lg:inline-flex" aria-hidden>
               ⌘K
             </kbd>
           </Button>
@@ -62,11 +65,12 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
             variant="ghost"
             size="icon"
             onClick={onOpenCommandPalette}
-            className="sm:hidden"
-            aria-label={t('nav.search')}
+            className="size-11 min-h-[44px] min-w-[44px] rounded-full sm:hidden"
+            aria-label={`${t('nav.search')} (⌘K)`}
           >
-            <Search className="size-4" />
+            <Search className="size-4" aria-hidden />
           </Button>
+          <div className="ml-1 hidden h-4 w-px bg-border sm:block" aria-hidden />
           <ThemeToggle />
           <LanguageToggle />
           <MobileNav />

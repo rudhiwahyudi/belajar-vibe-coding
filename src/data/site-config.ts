@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
 I hold a degree in Informatics and also serve as an Assistant Lecturer for Big Data and Data Analytics courses, helping students build practical skills in SQL and data analysis. As a former PKM (Program Kreativitas Mahasiswa) Project Leader and co-author of two research publications, I bring a structured, research-driven approach to problem solving.
 
 Whether it's mapping a business process, writing a requirements document, or untangling a system integration issue, I focus on practical solutions that work for both the business and the people using the system.`,
-  location: 'Indonesia',
+  location: 'Yogyakarta - Indonesia',
   email: 'wahyudirudhi@gmail.com',
   social: {
     github: 'https://github.com/rudhiwahyudi',

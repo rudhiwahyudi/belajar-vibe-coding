@@ -25,7 +25,7 @@ export function StaggerGroup({ children, ...props }: HTMLMotionProps<'div'>) {
       key={hasContent ? 'loaded' : 'empty'}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once: true, margin: '-60px', amount: 0.2 }}
       variants={staggerContainer}
       {...props}
     >
@@ -46,7 +46,7 @@ export function StaggerItem({ children, ...props }: HTMLMotionProps<'div'>) {
   }
 
   return (
-    <motion.div variants={fadeInUp} {...props}>
+    <motion.div variants={fadeInUp} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} {...props}>
       {children}
     </motion.div>
   )

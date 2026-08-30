@@ -21,9 +21,9 @@ export function FadeIn({ delay = 0, transition, children, ...props }: FadeInProp
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once: true, margin: '-60px', amount: 0.2 }}
       variants={fadeInUp}
-      transition={{ delay, ...transition }}
+      transition={{ delay, duration: 0.5, ease: [0.22, 1, 0.36, 1], ...transition }}
       {...props}
     >
       {children}

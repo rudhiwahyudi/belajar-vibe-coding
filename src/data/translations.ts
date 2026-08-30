@@ -159,7 +159,7 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
       viewProjects: 'View projects',
       getInTouch: 'Get in touch',
       resume: 'Résumé',
-      location: 'Indonesia',
+      location: 'Yogyakarta - Indonesia',
       availability: {
         'open-to-collab': 'Open to collaboration',
         'open-to-roles': 'Open to roles',
@@ -313,7 +313,7 @@ export const translations: Record<'en' | 'id', TranslationDictionary> = {
       viewProjects: 'Lihat proyek',
       getInTouch: 'Hubungi saya',
       resume: 'Resume',
-      location: 'Indonesia',
+      location: 'Yogyakarta - Indonesia',
       availability: {
         'open-to-collab': 'Terbuka untuk kolaborasi',
         'open-to-roles': 'Terbuka untuk pekerjaan',

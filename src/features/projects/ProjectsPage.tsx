@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
+import { FadeIn } from '@/components/motion/FadeIn'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { ProjectCard } from '@/features/projects/components/ProjectCard'
 import { ProjectFilterBar } from '@/features/projects/components/ProjectFilterBar'
@@ -27,13 +28,17 @@ export default function ProjectsPage() {
 
   return (
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
-      <SectionHeading
-        eyebrow={t('projectsPage.eyebrow')}
-        title={t('projectsPage.title')}
-        description={t('projectsPage.description')}
-      />
+      <FadeIn>
+        <SectionHeading
+          eyebrow={t('projectsPage.eyebrow')}
+          title={t('projectsPage.title')}
+          description={t('projectsPage.description')}
+        />
+      </FadeIn>
 
-      <ProjectFilterBar focusAreas={focusAreas} active={activeFilter} onChange={setActiveFilter} />
+      <FadeIn delay={0.06}>
+        <ProjectFilterBar focusAreas={focusAreas} active={activeFilter} onChange={setActiveFilter} />
+      </FadeIn>
 
       <StaggerGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filteredProjects.map((project) => (

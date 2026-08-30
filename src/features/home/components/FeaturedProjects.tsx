@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import { Button } from '@/components/ui/button'
+import { FadeIn } from '@/components/motion/FadeIn'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { ProjectCard } from '@/features/projects/components/ProjectCard'
 import { getFeaturedProjects, getAllProjects } from '@/data/projects'
@@ -26,21 +27,21 @@ export function FeaturedProjects() {
   }, [])
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="section-padding border-t border-border/40">
       <PageContainer className="flex flex-col gap-10">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <FadeIn className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow={t('featuredProjects.eyebrow')}
             title={t('featuredProjects.title')}
             description={t('featuredProjects.description')}
           />
-          <Button variant="outline" render={<Link to="/projects" />}>
+          <Button variant="outline" render={<Link to="/projects" />} className="w-fit shrink-0 rounded-full border-border/60 bg-background px-5 text-[13.5px] font-medium hover:bg-secondary">
             {t('featuredProjects.viewAll')}
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-3.5" />
           </Button>
-        </div>
+        </FadeIn>
 
-        <StaggerGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <StaggerItem key={project.slug}>
               <ProjectCard project={project} />

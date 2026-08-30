@@ -5,6 +5,8 @@ import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
 import { Button } from '@/components/ui/button'
 import { CertificateCard } from '@/features/certificates/components/CertificateCard'
+import { FadeIn } from '@/components/motion/FadeIn'
+import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { getAllCertificates } from '@/lib/certificates'
 import type { Certificate } from '@/types/certificate'
 import { useLanguage } from '@/hooks/useLanguage'
@@ -20,25 +22,27 @@ export function CertificatesPreview() {
   if (certs.length === 0) return null
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="section-padding border-t border-border/40">
       <PageContainer className="flex flex-col gap-10">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <FadeIn className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
             eyebrow={t('certificates.eyebrow')}
             title={t('certificates.title')}
             description={t('certificates.description')}
           />
-          <Button variant="outline" render={<Link to="/certificates" />}>
+          <Button variant="outline" render={<Link to="/certificates" />} className="w-fit shrink-0 rounded-full border-border/60 bg-background px-5 text-[13.5px] font-medium hover:bg-secondary">
             {t('certificates.viewAll')}
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-3.5" />
           </Button>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {certs.map((cert) => (
-            <CertificateCard key={cert.id} cert={cert} />
+            <StaggerItem key={cert.id}>
+              <CertificateCard cert={cert} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </PageContainer>
     </section>
   )

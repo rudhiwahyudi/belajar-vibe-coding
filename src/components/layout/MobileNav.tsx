@@ -21,16 +21,18 @@ export function MobileNav() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         render={
-          <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
-            <Menu className="size-5" />
+          <Button variant="ghost" size="icon" className="size-11 min-h-[44px] min-w-[44px] rounded-full lg:hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" aria-label="Open menu">
+            <Menu className="size-[18px]" aria-hidden />
           </Button>
         }
       />
-      <SheetContent side="right">
-        <SheetHeader>
-          <SheetTitle>{t('nav.search') === 'Search' ? 'Navigation' : 'Navigasi'}</SheetTitle>
+      <SheetContent side="right" className="w-[300px] border-l border-border/50 bg-background/95 backdrop-blur-xl">
+        <SheetHeader className="border-b border-border/40 pb-4 text-left">
+          <SheetTitle className="text-[13px] font-medium uppercase tracking-widest text-muted-foreground">
+            {t('nav.search') === 'Search' ? 'Navigation' : 'Navigasi'}
+          </SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col gap-1 px-4 pb-4">
+        <nav className="flex flex-col gap-1 px-3 py-4" aria-label="Mobile">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.href}
@@ -39,9 +41,9 @@ export function MobileNav() {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 cn(
-                  'rounded-lg px-3 py-2.5 text-base font-medium transition-colors',
+                  'rounded-xl px-3.5 py-3 text-[15px] font-[450] tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[44px] flex items-center',
                   isActive
-                    ? 'bg-secondary text-foreground'
+                    ? 'bg-foreground text-background'
                     : 'text-muted-foreground hover:bg-secondary hover:text-foreground',
                 )
               }

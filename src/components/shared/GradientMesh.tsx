@@ -17,8 +17,8 @@ export function GradientMesh({ className }: GradientMeshProps) {
         className,
       )}
     >
-      <div className="absolute left-1/2 top-[-10%] h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,var(--brand-accent-from)_0%,transparent_70%)] opacity-25 blur-3xl" />
-      <div className="absolute right-[-10%] top-1/3 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle_at_center,var(--brand-accent-to)_0%,transparent_70%)] opacity-20 blur-3xl" />
+      <div className="absolute left-1/2 top-[-8%] h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,var(--brand-accent-from)_0%,transparent_70%)] opacity-[0.07] blur-3xl" />
+      <div className="absolute right-[-8%] top-1/4 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle_at_center,var(--brand-accent-to)_0%,transparent_70%)] opacity-[0.06] blur-3xl" />
     </div>
   )
 }

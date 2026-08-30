@@ -17,17 +17,17 @@ export function ContactInfoCard() {
       <div className="flex flex-col gap-3 text-sm">
         <a
           href={`mailto:${siteConfig.email}`}
-          className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground"
+          className="flex items-center gap-3 rounded-lg px-1 py-1 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          <Mail className="size-4" />
+          <Mail className="size-4" aria-hidden />
           {siteConfig.email}
         </a>
         <div className="flex items-center gap-3 text-muted-foreground">
-          <MapPin className="size-4" />
+          <MapPin className="size-4" aria-hidden />
           {t('hero.location')}
         </div>
         <div className="flex items-center gap-3 text-muted-foreground">
-          <Briefcase className="size-4" />
+          <Briefcase className="size-4" aria-hidden />
           {isEn ? 'System Analyst at Astra Credit Companies' : 'System Analyst di Astra Credit Companies'}
         </div>
       </div>

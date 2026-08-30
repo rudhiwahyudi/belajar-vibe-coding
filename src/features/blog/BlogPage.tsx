@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SectionHeading } from '@/components/shared/SectionHeading'
+import { FadeIn } from '@/components/motion/FadeIn'
 import { StaggerGroup, StaggerItem } from '@/components/motion/StaggerGroup'
 import { BlogCard } from '@/features/blog/components/BlogCard'
 import { getAllPosts, getAllTags } from '@/lib/blog'
@@ -28,29 +29,34 @@ export default function BlogPage() {
 
   return (
     <PageContainer className="flex flex-col gap-10 py-16 md:py-24">
-      <SectionHeading
-        eyebrow={t('blogPage.eyebrow')}
-        title={t('blogPage.title')}
-        description={t('blogPage.description')}
-      />
+      <FadeIn>
+        <SectionHeading
+          eyebrow={t('blogPage.eyebrow')}
+          title={t('blogPage.title')}
+          description={t('blogPage.description')}
+        />
+      </FadeIn>
 
-      <div className="flex flex-wrap gap-2">
-        {(['All', ...tags] as const).map((tag) => (
-          <button
-            key={tag}
-            type="button"
-            onClick={() => setActiveTag(tag)}
-            className={cn(
-              'rounded-full border px-4 py-1.5 text-sm font-medium transition-colors',
-              activeTag === tag
-                ? 'border-primary/40 bg-primary/10 text-foreground'
-                : 'border-border text-muted-foreground hover:border-primary/30 hover:text-foreground',
-            )}
-          >
-            {tag === 'All' ? t('projectsPage.filterAll') : tag}
-          </button>
-        ))}
-      </div>
+      <FadeIn delay={0.06}>
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter blog">
+          {(['All', ...tags] as const).map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              onClick={() => setActiveTag(tag)}
+              aria-pressed={activeTag === tag}
+              className={cn(
+                'rounded-full border px-4 py-2 text-sm font-medium transition-colors min-h-[36px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                activeTag === tag
+                  ? 'border-foreground bg-foreground text-background'
+                  : 'border-border/60 bg-card text-muted-foreground hover:border-border hover:bg-secondary hover:text-foreground',
+              )}
+            >
+              {tag === 'All' ? t('projectsPage.filterAll') : tag}
+            </button>
+          ))}
+        </div>
+      </FadeIn>
 
       {filteredPosts.length === 0 ? (
         <p className="py-12 text-center text-muted-foreground">{t('blogPage.noPosts')}</p>

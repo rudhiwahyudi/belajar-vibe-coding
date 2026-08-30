@@ -22,17 +22,18 @@ export function ProjectFilterBar({ focusAreas, active, onChange }: ProjectFilter
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects">
       {options.map((option) => (
         <button
           key={option}
           type="button"
           onClick={() => onChange(option)}
+          aria-pressed={active === option}
           className={cn(
-            'rounded-full border px-4 py-1.5 text-sm font-medium transition-colors',
+            'rounded-full border px-4 py-2 text-sm font-medium transition-colors min-h-[36px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
             active === option
-              ? 'border-primary/40 bg-primary/10 text-foreground'
-              : 'border-border text-muted-foreground hover:border-primary/30 hover:text-foreground',
+              ? 'border-foreground bg-foreground text-background'
+              : 'border-border/60 bg-card text-muted-foreground hover:border-border hover:bg-secondary hover:text-foreground',
           )}
         >
           {getOptionLabel(option)}

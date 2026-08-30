@@ -14,10 +14,13 @@ export function RootLayout() {
 
   return (
     <div className="flex min-h-svh flex-col">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <NoiseOverlay />
       <Navbar onOpenCommandPalette={() => setOpen(true)} />
       <CommandPalette open={open} onOpenChange={setOpen} />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1" tabIndex={-1}>
         <AnimatePresence mode="wait" initial={false}>
           <PageTransition key={location.pathname}>
             <Outlet />
