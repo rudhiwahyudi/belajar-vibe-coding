@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { FadeIn } from '@/components/motion/FadeIn'
 import { siteConfig } from '@/data/site-config'
-import { useLanguage } from '@/hooks/useLanguage'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import fotoProfile from '@/assets/foto_profile.jpg'
 
@@ -86,7 +85,7 @@ function RoleTypewriterBadge() {
             animate={isPaused ? { opacity: [1, 1, 0, 0] } : { opacity: 1 }}
             transition={
               isPaused
-                ? { duration: 1, repeat: Infinity, times: [0, 0.5, 0.5, 1], ease: 'stepEnd' }
+                ? { duration: 1, repeat: Infinity, times: [0, 0.5, 0.5, 1], ease: 'linear' }
                 : { duration: 0.15 }
             }
           >
@@ -99,7 +98,6 @@ function RoleTypewriterBadge() {
 }
 
 export function Hero() {
-  const { t } = useLanguage()
 
   return (
     <section className="relative overflow-hidden">
